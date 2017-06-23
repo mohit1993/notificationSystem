@@ -1,15 +1,20 @@
-const Notification = sequelize.define('notification',{
+var Conf = require('./config.js')
+
+const Notification = Conf.sequelize.define('notification',{
   title : {
-    type : Sequelize.STRING
+    type : Conf.Sequelize.STRING
   },
   detail : {
-    type : Sequelize.STRING
+    type : Conf.Sequelize.STRING
   },
   isRead : {
-    type : Sequelize.BOOLEAN
+    type : Conf.Sequelize.BOOLEAN
   }
 });
 
 Notification.sync({force:false}).then(() => {
   console.log("Table Created");
+})
+.catch((err) => {
+  console.log(err);
 })
