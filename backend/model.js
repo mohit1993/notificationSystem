@@ -1,10 +1,10 @@
 var Conf = require('./config.js')
 
-const Notification = Conf.sequelize.define('notification',{
-  title : {
+var Notification = Conf.sequelize.define('notification',{
+  from : {
     type : Conf.Sequelize.STRING
   },
-  detail : {
+  content : {
     type : Conf.Sequelize.STRING
   },
   isRead : {
@@ -19,4 +19,4 @@ Notification.sync({force:false}).then(() => {
   console.log(err);
 })
 
-module.exports.Notification = Notification;
+module.exports = Notification;

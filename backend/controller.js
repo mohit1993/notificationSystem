@@ -1,21 +1,49 @@
-var db = require("./model.js");
+var Notification = require("./model.js");
 
-var notification = {};
-
-var saveNotification = function(title,detail){
+var saveNotification = function(from,content,ws){
   // save the created notification;
+  Notification.create({
+    from: from,
+    content: content,
+    isRead : false
+  })
+  .then((notification) => {
+        ws.send(JSON.stringify(notification));
+      }
+  )
+  .catch((err) => console.log(err));
 }
 
 var markNotificationAsRead = function(notification_id){
   // mark as read
+  Notification
+    .update(
+      {isRead : true},
+      {where : { id : notification_id}}
+    )
+    .then((success) => {
+      console.log("updated successful");
+      console.log(success);
+    });
 }
 
-var getAllNotifications = function(){
+var getAllNotifications = function(ws){
   // return all the notifications
+  Notification
+    .findAll({
+      where : {
+        isRead : false
+      }},
+      {order : 'createdAt DESC'}
+    )
+    .then( (notifications) => {
+      ws.send(JSON.stringify(notifications));
+    })
+    .catch( (err) => {
+      console.log(err);
+    })
 }
 
-notification.saveNotification = saveNotification;
-notification.markNotificationAsRead = markNotificationAsRead;
-notification.getAllNotifications = getAllNotifications;
-
-module.exports.notifications = notification;
+module.exports.saveNotification = saveNotification;
+module.exports.markNotificationAsRead = markNotificationAsRead;
+module.exports.getAllNotifications = getAllNotifications;
