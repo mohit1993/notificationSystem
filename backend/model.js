@@ -18,3 +18,5 @@ Notification.sync({force:false}).then(() => {
 .catch((err) => {
   console.log(err);
 })
+
+module.exports.Notification = Notification;
