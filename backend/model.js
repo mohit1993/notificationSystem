@@ -10,6 +10,8 @@ var Notification = Conf.sequelize.define('notification',{
   isRead : {
     type : Conf.Sequelize.BOOLEAN
   }
+},{
+  timestamps : false
 });
 
 Notification.sync({force:false}).then(() => {

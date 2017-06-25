@@ -18,17 +18,16 @@ wss.on('connection',function connection(ws,req){
   const location = url.parse(req.url, true);
   console.log("Connection established");
   notification.getAllNotifications(ws);
-  
+
   ws.on('message', function incoming(message){
     console.log('recieved: %s', message);
     var id = JSON.parse(message);
-    notification.markNotificationAsRead(id);
+    //notification.markNotificationAsRead(id);
   });
 
   var from = "Mohit Goyal";
   var content = "Hi i want to be you friend";
   notification.saveNotification(from,content,ws);
-  ws.send('Hello Mohit');
   // setInterval(function(){
   //   ws.send("This is test message")
   // },2000);

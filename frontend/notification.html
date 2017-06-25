@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en">
     <head>
-
         <title>Mohit page</title>
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
         <!-- Latest compiled and minified CSS -->
@@ -13,8 +12,12 @@
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="https://use.fontawesome.com/1bfa2cadf4.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+        <script src="./notificationController.js"></script>
+
     </head>
     <body>
+      <div ng-app="notification" ng-controller="notificationController">
         <nav class="navbar navbar-default">
           <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -25,7 +28,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="#">Brand</a>
+              <a class="navbar-brand" href="#">{{notifications}}</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -35,14 +38,16 @@
                     <div class="form-group">
                       <input type="text" class="form-control" placeholder="Search">
                     </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
                 </form>
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell-o" aria-hidden="true"><span class="noti_badge badge">2</span></i> </a>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-bell-o" aria-hidden="true">
+                      <span class="noti_badge badge">{{notifications.length}}</span></i>
+                  </a>
                   <ul class="dropdown-menu text-center">
                     <i class="fa fa-sort-asc up_icon" aria-hidden="true"></i>
-                    <li class="noti">Notifications <span class="badge">2</span></li>
-                    <li>
+                    <li class="noti">Notifications <span class="badge">{{notifications.length}}</span></li>
+                    <li ng-repeat="notification in notifications">
                         <div class="media">
                           <div class="media-left">
                             <a href="#">
@@ -50,37 +55,12 @@
                             </a>
                           </div>
                           <div class="media-body">
-                            <span class="media-heading"><b>Mohit goyal</b></span>
-                            posted a photo on your wall
+                            <span class="media-heading"><b>{{notification.from}}</b></span>
+                            {{notification.content}}
                           </div>
                         </div>
                     </li>
-                    <li>
-                        <div class="media">
-                          <div class="media-left">
-                            <a href="#">
-                              <img class="media-object" src="https://cdn.dribbble.com/users/133700/avatars/small/8bba2fee07a72746338893acec0a5438.png?1490061841" alt="...">
-                            </a>
-                          </div>
-                          <div class="media-body">
-                            <span class="media-heading"><b>Mohit goyal</b></span>
-                            posted a photo on your wall
-                          </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="media">
-                          <div class="media-left">
-                            <a href="#">
-                              <img class="media-object" src="https://cdn.dribbble.com/users/133700/avatars/small/8bba2fee07a72746338893acec0a5438.png?1490061841" alt="...">
-                            </a>
-                          </div>
-                          <div class="media-body">
-                            <span class="media-heading"><b>Mohit goyal</b></span>
-                            posted a photo on your wall
-                          </div>
-                        </div>
-                    </li>
+                    <li class="divider"></li>
                   </ul>
                 </li>
                 <li><a href="#">Link</a></li>
@@ -91,6 +71,7 @@
           </div><!-- /.container-fluid -->
         </nav>
         <div class="container"></div>
+      </div>
     </body>
 
     <style>
@@ -98,7 +79,7 @@
         background: #ACC3CF;
     }
 
-    .navbar-nav>li>.dropdown-menu {
+    .navbar-nav>li> .dropdown-menu {
     top: 65px;
     right: -126px;
     padding: 0px;
@@ -109,6 +90,12 @@
     .dropdown-menu li {
     background: #E8F0F3;
     padding: 15px;
+    }
+    .dropdown-menu .divider {
+    height: 1px;
+    margin: 9px 0;
+    overflow: hidden;
+    background-color: #e5e5e5;
     }
     .up_icon {
         position: absolute;

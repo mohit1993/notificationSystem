@@ -25,8 +25,7 @@
 
     wsButton.onclick = function(){
       ws.send(JSON.stringify(id));
-    }
-  }
+    }  }
   else{
     alert("Browser doesnt support web sockets");
   }
