@@ -1,6 +1,5 @@
 (function(){
-
-  var app = angular.module("notification",[]);
+  var app = angular.module('notification',[]);
 
   app.controller('notificationController',['$scope',function($scope){
     $scope.notifications = [];
@@ -14,10 +13,8 @@
 
       ws.onmessage = function(evt){
         var message = evt.data;
-        if($scope.notifications.length == 0){
-          $scope.notifications = JSON.parse(message);
-        }
-        else $scope.notifications.concat(JSON.parse(message));
+        $scope.notifications = $scope.notifications.concat(JSON.parse(message));
+        $scope.$apply();
         console.log($scope.notifications.length)
       }
 
@@ -25,17 +22,17 @@
         alert("Connection to websocket closed");
       }
 
-      $rootScope.cleanNotifications = function(){
+      $('#myDropdown').on('hide.bs.dropdown', function () {
         var ids = [];
-        for(notification in $scope.notifications) ids.push(notification.id);
-
+        for(var i in $scope.notifications){
+          ids.push($scope.notifications[i].id);
+          console.log(ids);
+        }
         ids = JSON.stringify(ids);
         ws.send(ids);
         $scope.notifications = [];
-      }
-      // wsButton.onclick = function(){
-      //   ws.send(JSON.stringify(id));
-      // }
+        $scope.$apply();
+      });
     }
     else{
       alert("Browser doesnt support web sockets");

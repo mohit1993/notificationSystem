@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
     <head>
@@ -28,7 +29,6 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="#">{{notifications}}</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -39,28 +39,29 @@
                       <input type="text" class="form-control" placeholder="Search">
                     </div>
                 </form>
-                <li class="dropdown">
+                <li id="myDropdown" class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-bell-o" aria-hidden="true">
+                    <i id="bell" class="fa fa-bell-o" aria-hidden="true">
                       <span class="noti_badge badge">{{notifications.length}}</span></i>
                   </a>
                   <ul class="dropdown-menu text-center">
                     <i class="fa fa-sort-asc up_icon" aria-hidden="true"></i>
-                    <li class="noti">Notifications <span class="badge">{{notifications.length}}</span></li>
-                    <li ng-repeat="notification in notifications">
-                        <div class="media">
-                          <div class="media-left">
-                            <a href="#">
-                              <img class="media-object" src="https://cdn.dribbble.com/users/133700/avatars/small/8bba2fee07a72746338893acec0a5438.png?1490061841" alt="...">
-                            </a>
+                    <li class="noti"><b>Notifications</b> <span class="badge">{{notifications.length}}</span></li>
+                    <ul id="notification-list">
+                      <li ng-repeat="notification in notifications">
+                          <div class="media">
+                            <div class="media-left">
+                              <a href="#">
+                                <img class="media-object" src="https://cdn.dribbble.com/users/133700/avatars/small/8bba2fee07a72746338893acec0a5438.png?1490061841" alt="...">
+                              </a>
+                            </div>
+                            <div class="media-body">
+                              <span class="media-heading"><b>{{notification.from}}</b></span>
+                              {{notification.content}}
+                            </div>
                           </div>
-                          <div class="media-body">
-                            <span class="media-heading"><b>{{notification.from}}</b></span>
-                            {{notification.content}}
-                          </div>
-                        </div>
-                    </li>
-                    <li class="divider"></li>
+                      </li>
+                    </ul>
                   </ul>
                 </li>
                 <li><a href="#">Link</a></li>
@@ -77,6 +78,18 @@
     <style>
     body{
         background: #ACC3CF;
+        color : #95A0A9;
+    }
+
+    #notification-list li~li {
+      border-top: 1px solid #ccc;
+    }
+
+    #notification-list {
+      list-style-type: none;
+      padding: 0;
+      height: 400px;
+      overflow-y: scroll;
     }
 
     .navbar-nav>li> .dropdown-menu {
@@ -111,7 +124,7 @@
     .badge {
     display: inline-block;
     min-width: 10px;
-    padding: 4px 6px;
+    padding: 5px;
     font-size: 10px;
     font-weight: 700;
     line-height: 1;
@@ -131,11 +144,18 @@
         vertical-align: middle;
     }
     .noti_badge {
+        border: 2px solid white;
         position: absolute;
         top: 9px;
-        right: 9px;
-        padding: 2px 4px;
+        right: 6px;
+        padding: 3px;
+        font-size: 9px;
         font-family: sans-serif;
+    }
+
+    #bell {
+      font-size: 17px;
+      font-weight: 900px;
     }
 
     </style>

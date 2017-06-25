@@ -14,12 +14,12 @@ var saveNotification = function(from,content,ws){
   .catch((err) => console.log(err));
 }
 
-var markNotificationAsRead = function(notification_id){
+var markNotificationAsRead = function(notification_ids){
   // mark as read
   Notification
     .update(
       {isRead : true},
-      {where : { id : notification_id}}
+      {where : { id : notification_ids}}
     )
     .then((success) => {
       console.log("updated successful");
