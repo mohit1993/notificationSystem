@@ -1,0 +1,100 @@
+body{
+    background: #ACC3CF;
+    color : #95A0A9;
+}
+
+#notification-list li~li {
+  border-top: 1px solid #ccc;
+}
+
+#notification-list {
+  list-style-type: none;
+  padding: 0;
+  min-height: 20px;
+  max-height: 400px;
+  overflow-y: scroll;
+}
+.dropdown .dropdown-menu {
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+
+  max-height: 0;
+  display: block;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.dropdown.open .dropdown-menu {
+  max-height: 400px;
+  opacity: 1;
+}
+
+.navbar-nav>li> .dropdown-menu {
+top: 65px;
+right: -126px;
+padding: 0px;
+border-radius: 5px;
+border: 1px solid #E8F0F3;
+width: 300px;
+}
+.dropdown-menu li {
+background: #E8F0F3;
+padding: 15px;
+}
+.dropdown-menu .divider {
+height: 1px;
+margin: 9px 0;
+overflow: hidden;
+background-color: #e5e5e5;
+}
+.up_icon {
+    position: absolute;
+    top: -20px;
+    font-size: 93px;
+    right: 120px;
+    color: black;
+}
+.noti {
+    background: white !important;
+    text-align: center;
+}
+.badge {
+display: inline-block;
+min-width: 10px;
+padding: 5px;
+font-size: 10px;
+font-weight: 700;
+line-height: 1;
+color: #fff;
+text-align: center;
+white-space: nowrap;
+vertical-align: middle;
+background-color: #00CFCD;
+border-radius: 50%;
+}
+
+.media-object {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+.media-left {
+    vertical-align: middle;
+}
+.noti_badge {
+    border: 2px solid white;
+    position: absolute;
+    top: 9px;
+    right: 6px;
+    padding: 3px;
+    font-size: 9px;
+    font-family: sans-serif;
+}
+
+#bell {
+  font-size: 17px;
+  font-weight: 900px;
+}

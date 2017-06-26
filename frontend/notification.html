@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
     <head>
@@ -16,7 +15,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
         <script src="./notificationController.js"></script>
 
+        <link rel="stylesheet" href="notification.css">
     </head>
+
     <body>
       <div ng-app="notification" ng-controller="notificationController">
         <nav class="navbar navbar-default">
@@ -48,6 +49,13 @@
                     <i class="fa fa-sort-asc up_icon" aria-hidden="true"></i>
                     <li class="noti"><b>Notifications</b> <span class="badge">{{notifications.length}}</span></li>
                     <ul id="notification-list">
+                      <li ng-show = "notifications.length == 0">
+                        <div class="media">
+                          <div class="media-body">
+                            <span class="media-heading"><b><center>No New Notifications</center></b></span>
+                          </div>
+                        </div>
+                      </li>
                       <li ng-repeat="notification in notifications">
                           <div class="media">
                             <div class="media-left">
@@ -74,90 +82,4 @@
         <div class="container"></div>
       </div>
     </body>
-
-    <style>
-    body{
-        background: #ACC3CF;
-        color : #95A0A9;
-    }
-
-    #notification-list li~li {
-      border-top: 1px solid #ccc;
-    }
-
-    #notification-list {
-      list-style-type: none;
-      padding: 0;
-      height: 400px;
-      overflow-y: scroll;
-    }
-
-    .navbar-nav>li> .dropdown-menu {
-    top: 65px;
-    right: -126px;
-    padding: 0px;
-    border-radius: 5px;
-    border: 1px solid #E8F0F3;
-    width: 300px;
-    }
-    .dropdown-menu li {
-    background: #E8F0F3;
-    padding: 15px;
-    }
-    .dropdown-menu .divider {
-    height: 1px;
-    margin: 9px 0;
-    overflow: hidden;
-    background-color: #e5e5e5;
-    }
-    .up_icon {
-        position: absolute;
-        top: -22px;
-        font-size: 93px;
-        right: 120px;
-        color: white;
-    }
-    .noti {
-        background: white !important;
-        text-align: center;
-    }
-    .badge {
-    display: inline-block;
-    min-width: 10px;
-    padding: 5px;
-    font-size: 10px;
-    font-weight: 700;
-    line-height: 1;
-    color: #fff;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    background-color: #00CFCD;
-    border-radius: 50%;
-    }
-    .media-object {
-        width: 35px;
-        height: 35px;
-        border-radius: 50%;
-    }
-    .media-left {
-        vertical-align: middle;
-    }
-    .noti_badge {
-        border: 2px solid white;
-        position: absolute;
-        top: 9px;
-        right: 6px;
-        padding: 3px;
-        font-size: 9px;
-        font-family: sans-serif;
-    }
-
-    #bell {
-      font-size: 17px;
-      font-weight: 900px;
-    }
-
-    </style>
-
 </html>
